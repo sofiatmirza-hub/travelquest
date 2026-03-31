@@ -5,16 +5,54 @@
   <title>TravelQuest</title>
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <h1>🌍 TravelQuest</h1>
-  <p>Prepare for London & Paris one tiny mission at a time.</p>
 
-  <div id="progress-container">
-    <div id="progress-bar"></div>
+<body>
+
+  <!-- 🔐 LOGIN SCREEN -->
+  <div id="login-screen" style="text-align:center; margin-top:50px;">
+    <h2>TravelQuest Login</h2>
+    <input id="password-input" type="password" placeholder="Enter password">
+    <button onclick="checkPassword()">Enter</button>
+    <p id="error" style="color:red;"></p>
   </div>
 
-  <div id="task-container"></div>
+  <!-- 🌍 MAIN APP CONTENT (hidden until login succeeds) -->
+  <div id="app-content">
+    <h1>🌍 TravelQuest</h1>
+    <p>Prepare for London & Paris one tiny mission at a time.</p>
 
+    <div id="progress-container">
+      <div id="progress-bar"></div>
+    </div>
+
+    <div id="task-container"></div>
+  </div>
+
+  <!-- 🔧 LOGIN + VISIBILITY LOGIC -->
+  <script>
+    // Hide the app content on load, show only login
+    document.getElementById("app-content").style.display = "none";
+
+    function checkPassword() {
+      const input = document.getElementById("password-input").value;
+      const correct = "LondonParis2026"; // change this to your password
+
+      if (input === correct) {
+        // Hide login screen
+        document.getElementById("login-screen").style.display = "none";
+
+        // Show the app
+        document.getElementById("app-content").style.display = "block";
+        document.getElementById("progress-container").style.display = "block";
+        document.getElementById("task-container").style.display = "block";
+      } else {
+        document.getElementById("error").innerText = "Incorrect password";
+      }
+    }
+  </script>
+
+  <!-- 📦 MAIN APP SCRIPT -->
   <script src="app.js"></script>
+
 </body>
 </html>
