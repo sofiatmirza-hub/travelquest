@@ -7,52 +7,73 @@
 </head>
 
 <body>
-
   <!-- 🔐 LOGIN SCREEN -->
-  <div id="login-screen" style="text-align:center; margin-top:50px;">
-    <h2>TravelQuest Login</h2>
-    <input id="password-input" type="password" placeholder="Enter password">
-    <button onclick="checkPassword()">Enter</button>
-    <p id="error" style="color:red;"></p>
-  </div>
-
-  <!-- 🌍 MAIN APP CONTENT (hidden until login succeeds) -->
-  <div id="app-content">
-    <h1>🌍 TravelQuest</h1>
-    <p>Prepare for London & Paris one tiny mission at a time.</p>
-
-    <div id="progress-container">
-      <div id="progress-bar"></div>
+  <div id="login-screen">
+    <div class="card login-card">
+      <h2>TravelQuest Login</h2>
+      <input id="password-input" type="password" placeholder="Enter password">
+      <button class="btn primary" onclick="checkPassword()">Enter</button>
+      <p id="error" class="error"></p>
     </div>
-
-    <div id="task-container"></div>
   </div>
 
-  <!-- 🔧 LOGIN + VISIBILITY LOGIC -->
-  <script>
-    // Hide the app content on load, show only login
-    document.getElementById("app-content").style.display = "none";
+  <!-- 🌍 MAIN APP CONTENT -->
+  <div id="app-content">
+    <header class="top-bar">
+      <div class="avatar">
+        <span>🧳</span>
+      </div>
+      <div class="top-info">
+        <h1>TravelQuest</h1>
+        <p>London & Paris prep, one quest at a time.</p>
+      </div>
+      <div class="stats">
+        <div>XP: <span id="xp">0</span></div>
+        <div>Level: <span id="level">1</span></div>
+        <div>Streak: <span id="streak">0</span> 🔥</div>
+      </div>
+    </header>
 
-    function checkPassword() {
-      const input = document.getElementById("password-input").value;
-      const correct = "LondonParis2026"; // change this to your password
+    <!-- 🕒 TRIP DASHBOARD -->
+    <section class="card dashboard">
+      <h2>Trip Dashboard</h2>
+      <p>Departure: <strong>June 11, 2026</strong></p>
+      <p class="countdown">
+        <span id="days-left">0</span> days •
+        <span id="hours-left">0</span> hours •
+        <span id="mins-left">0</span> mins
+      </p>
+      <p class="subtext">Keep your streak going to arrive feeling calm, packed, and ready.</p>
+    </section>
 
-      if (input === correct) {
-        // Hide login screen
-        document.getElementById("login-screen").style.display = "none";
+    <!-- ✅ TASKS -->
+    <section class="card">
+      <h2>Today’s Quests</h2>
+      <p class="subtext">Do 1–3 quick quests. Each is 1–5 minutes.</p>
+      <div id="progress-container">
+        <div id="progress-bar"></div>
+      </div>
+      <div id="task-container"></div>
+    </section>
 
-        // Show the app
-        document.getElementById("app-content").style.display = "block";
-        document.getElementById("progress-container").style.display = "block";
-        document.getElementById("task-container").style.display = "block";
-      } else {
-        document.getElementById("error").innerText = "Incorrect password";
-      }
-    }
-  </script>
+    <!-- 🎒 PACKING CHECKLIST -->
+    <section class="card">
+      <h2>Packing Checklist</h2>
+      <p class="subtext">Based on London & Paris summer essentials.</p>
+      <div id="packing-container"></div>
+    </section>
 
-  <!-- 📦 MAIN APP SCRIPT -->
+    <!-- 🔊 SOUND TOGGLE -->
+    <section class="card">
+      <h2>Settings</h2>
+      <label class="toggle">
+        <input type="checkbox" id="sound-toggle" checked>
+        <span>Enable sound effects</span>
+      </label>
+    </section>
+  </div>
+
+  <!-- 🔧 LOGIC + APP -->
   <script src="app.js"></script>
-
 </body>
 </html>
